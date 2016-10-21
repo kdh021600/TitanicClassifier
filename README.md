@@ -7,8 +7,8 @@ Titanic Survivors Classifier - Random Forests
 ## Data Cleaning
 
 At first, we are going to get rid of the unnecesary variables that will not contribute to the model. That variables are:
-..*Name: because it’s a string.
-..*Id: because the ID does not provide any valuable information, since it’s only metadata.
-..*Ticket: it’s a string.
-..*Cabin: it’s a string.
+..* Name: because it’s a string.
+..* Id: because the ID does not provide any valuable information, since it’s only metadata.
+..* Ticket: it’s a string.
+..* Cabin: it’s a string.
 Besides, we are going to get rid of the rows that have missing values such as ‘ages’. The dataset has 891 rows at the beginning, and after filtering out the missing values we have ended up with 714 instances with which we will work from now on.
