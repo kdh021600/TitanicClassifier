@@ -15,7 +15,7 @@ At first, we are going to get rid of the unnecesary variables that will not cont
   * Name: because it’s a string.
   * Id: because the ID does not provide any valuable information, since it’s only metadata.
   * Ticket: it’s a string.
-  * Cabin: it’s a string. Later we will try to add this feature to see if it gives some insights.
+  * Cabin: it’s a string. Later we will try to add [Cabin](# Extra points: Cabins) to see if it gives some insights.
   
 Besides, we are going to get rid of the rows that have missing values such as ‘ages’. The dataset has 891 rows at the beginning, and after filtering out the missing values we have ended up with 714 instances with which we will work from now on.
 
@@ -89,7 +89,7 @@ The final performance of the Random Forest is:
   * Accuracy: 0.82
   * Kappa: 0.62
   
-## Models comparison.
+## Models comparison
 
 After testing both models against the test set, we have ended up with the next values:
 
@@ -107,7 +107,7 @@ In this case, we have seen how the Random Forest outperforms the Decision Tree, 
   * Once the computation overhead is done, the model can be stored for future uses.
   * It computes proximities between pairs of cases that can be used in clustering, locating outliers or unlabeled data.
 
-## Extra points: Cabins.
+## Extra points: Cabins
 
 After some research, I ended up knowing that the codification of Cabins number could be a source of information regarding the survivability of the passengers, because the first letter indicates the deck of the ship where it is located. Therefore, we have investigated the distribution of facilities of the RMS Titanic (encyclopedia-titanica.org).
 
@@ -121,5 +121,12 @@ The hypothesis is that the distribution of passengers through levels could provo
 :-------------------------------------------------------------------------------------------------------------------------------:|:-------------------------:
 <img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/cabin_stacked.png?raw=true" width="400" height="400">  |  <img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/passengers.png?raw=true" width="400" height="400">
 
+I took this NAs as it was valuable information and I calculated the model using Cabin getting 0.77 of accuracy. This result is worse than the model without Cabin, so I took a look at the tree in order to check what is happening.
+
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree_cabin.png?raw=true" width="600" height="400">
+
+As we can see, the phenomena is dominated by Sex, as in the previous models, but also by Cabin and Pclass.
+
+Finally, I have concluded that the absence of improvement is due to the correlation between Cabin and Pclass which dominates the phenomena. So, the lack of instances of Cabin makes Cabin to become a feature that gives less information than I expected, because the information it gives, with soo many NAs which represents a group of third class passengers, is the same as the Pclass feature. The valuable information would have been to know the distribution of third class passengers in the different decks which is hidden in the group of NAs in this case. Hence, I decided to not use the Cabin feature.
 
 
