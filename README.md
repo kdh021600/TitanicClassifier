@@ -33,7 +33,7 @@ Regarding the classification tree, it does not change because the decision tree 
 
 Besides, if we look at the R-squared of the decision tree, we can see how important is the first split (Sex variable) in the explanation of the Survivals, and how the successive splittings add less explanation. We can also see how the overfitting is avoided pruning the tree in the 6th split and leaving only a R-squared of 0.66.
 
-![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/rsquare.png?raw=true "R-square")
+![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/rsquare.png?raw=true =200x200 "R-square")
 
 The performance values for this training are:
   * Accuracy: 0.7865
@@ -41,7 +41,22 @@ The performance values for this training are:
   * Sensitivity : 0.8091        
   * Specificity : 0.75 
 
+Now, we automate the parameter tuning and also run 10-fold Cross Validation in the process of training in order to achieve a combination of parameters that yields a better performance. After obtaining different combinations of parameters we are going to focus on:
+  * The Complexity Parameter (cp). In every split, the algorithm checks if the R-squared is improved more than cp and in that case it      splits. The main role of this parameter is to save computing time by pruning off splits that are obviously not worthwhile. Therefore, obtaining the optimal cp would safe computation time and also the possibility of overfitted trees.
+  * The Cost. A vector of non-negative costs, one for each variable in the model. Defaults to one for all variables. These are scalings to be applied when considering splits, so the improvement on splitting on a variable is divided by its cost in deciding which split to choose.
 
+Those are the different results obtained:
+
+![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/accuracy_cp_all.png?raw=true =200x200)
+
+Here we have trees that were pruned very soon. We can see the problem of a forward approach when splitting. In order to reduce overfitting and computation time, we are prunning the tree in every split checking the cp threshold without knowing if later splits are going to increase the accuracy, even though the current split doesn’t improve more than what we have stated in the cp parameter, this is known as the horizon effect (Wikipedia, Horizon Effect). Therefore, for the final parameters (pink line, Cost = 2), when cp= 0.04 or 0.07 the tree stops with an accuracy of ~0.79, but for cp=0.00, 0.01 or 0.02 the tree doesn’t stop and doesn’t prune some intermediate nodes, which don’t increase the accuracy, ending up in splittings that increase the accuracy to 0.81.
+
+The final combination used is the default rpart() parameters (maxdepth = 30, minsplit=20, etc) plus cp = 0.00 and Cost = 2, which are the values obtained after the train() using 10-fold CV. The final tree is:
+
+![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree_10.png?raw=true =200x200)
+
+  * Accuracy: 0.81
+  * Kappa: 0.59
 
 
 
