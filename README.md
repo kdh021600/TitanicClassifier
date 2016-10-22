@@ -117,9 +117,9 @@ This is a first glance of the maps of RMS Titanic and the distribution of decks 
 
 The hypothesis is that the distribution of passengers through levels could provoke that many of them, in low levels, were more likely to die. I found that the distribution was made according to the Pclass: first class had the top decks (A-E), second class (D-F), and third class (E-G). So I took a look at the Cabin data. I splitted the name of the Cabins to extract the deck where it was placed. Then, I plotted the distribution of Cabins throughout decks and we realized the amount of <NA> that we had, and how the distribution of passengers over Pclass overlaps the distribution of passengers over decks, the minority (first class) are all well distributed in A-E decks  while the rest are in the other decks or are NAs, so NAs are mostly (third class passengers).
 
-Cabins                                                                                                                           |  Solarized Ocean
+                                                                                                                                 |  
 :-------------------------------------------------------------------------------------------------------------------------------:|:-------------------------:
-<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/cabin_stacked.png?raw=true" width="600" height="600">  |  <img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/passengers.png?raw=true" width="600" height="600">
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/cabin_stacked.png?raw=true" width="400" height="400">  |  <img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/passengers.png?raw=true" width="400" height="400">
 
 
 
