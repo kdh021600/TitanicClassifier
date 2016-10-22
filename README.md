@@ -1,11 +1,13 @@
 # TitanicClassifier
 Titanic Survivors Classifier - Decision Tree vs Random Forests
 
+
 ## Introduction
 
 > “The sinking of the RMS Titanic occurred on the night of 14 April through to the morning of 15 April 1912 in the north Atlantic Ocean, four days into the ship's maiden voyage from Southampton to New York City. The largest passenger liner in service at the time, Titanic had an estimated 2,224 people on board when she struck an iceberg at around 23:40 (ship's time) on Sunday, 14 April 1912. Her sinking two hours and forty minutes later at 02:20 (05:18 GMT) on Monday, 15 April resulted in the deaths of more than 1,500 people, which made it one of the deadliest peacetime maritime disasters in history.” - Wikipedia.
 
 ![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/titanic.png?raw=true "Titanic")
+
 
 ## Data Cleaning
 
@@ -16,6 +18,7 @@ At first, we are going to get rid of the unnecesary variables that will not cont
   * Cabin: it’s a string. Later we will try to add this feature to see if it gives some insights.
   
 Besides, we are going to get rid of the rows that have missing values such as ‘ages’. The dataset has 891 rows at the beginning, and after filtering out the missing values we have ended up with 714 instances with which we will work from now on.
+
 
 ## Training Decision Tree
 
@@ -58,6 +61,7 @@ The final combination used is the default rpart() parameters (maxdepth = 30, min
   * Accuracy: 0.81
   * Kappa: 0.59
 
+
 ## Training Random Forests
 
 We have followed the same approach to tune the parameters, and we have end-up with the following best combination:
@@ -70,7 +74,8 @@ Now, we plot the importance of each variable for the model according to their me
 
 <img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/vs19.png?raw=true" width="600" height="400">
 
-As it can be seen in this image, according to the Gini index, the most relevant variables are: Sex>Fare>Age>Pclass>SibSP>Parch>Embarked.
+As it can be seen in this image, according to the Gini index, the most relevant variables are: Sex > Fare > Age > Pclass > SibSP > Parch > Embarked.
+
 Comparing this order against the order of the Decision Tree, we can see how the Random Forest gives more importance to Fare and Age than Pclass: Sex -> Pclass  -> Age  -> Fare -> Parch. We should trust more in this realtion of importance, since the Gini  mean is calculated along the successive splits of the whole tree, which seems to be a more robust result.
 
 As it can be seen in this image, according to the Gini index, the most relevant variables are: Sex > Fare > Age > Pclass > SibSP > Parch > Embarked.
