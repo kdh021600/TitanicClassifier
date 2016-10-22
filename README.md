@@ -58,5 +58,46 @@ The final combination used is the default rpart() parameters (maxdepth = 30, min
   * Accuracy: 0.81
   * Kappa: 0.59
 
+## Training Random Forests
 
+We have followed the same approach to tune the parameters, and we have end-up with the following best combination:
 
+  * Type of random forest: classification
+  * Number of trees: 2000
+  * Number of variables randomly sampled as candidates at each split (mtry): 3
+
+Now, we plot the importance of each variable for the model according to their mean decrease of the Gini index or the mean accuracy.
+
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/vs19.png?raw=true" width="600" height="400">
+
+As it can be seen in this image, according to the Gini index, the most relevant variables are: Sex>Fare>Age>Pclass>SibSP>Parch>Embarked.
+Comparing this order against the order of the Decision Tree, we can see how the Random Forest gives more importance to Fare and Age than Pclass: Sex -> Pclass  -> Age  -> Fare -> Parch. We should trust more in this realtion of importance, since the Gini  mean is calculated along the successive splits of the whole tree, which seems to be a more robust result.
+
+As it can be seen in this image, according to the Gini index, the most relevant variables are: Sex > Fare > Age > Pclass > SibSP > Parch > Embarked.
+
+Comparing this order against the order of the Decision Tree, we can see how the Random Forest gives more importance to Fare and Age than Pclass (Sex > Pclass > Age > Fare > Parch).
+
+We should trust more in this realtion of importance, since the Gini mean is calculated along the successive splits of the whole tree, which seems to be a more robust result.
+
+The final performance of the Random Forest is:
+
+  * Accuracy: 0.82
+  * Kappa: 0.62
+  
+## Models comparison.
+
+After testing both models against the test set, we have ended up with the next values:
+
+Model         | Accuracy    | Kappa  | Sensitivity  | Specificity |
+-------------:|:-----------:|:------:|:------------:|:-----------:|
+Decision Tree | 0.775       | 0.53   | 0.79         | 0.75        |
+Random Forest | 0.79        | 0.55   | 0.84         | 0.70        |
+
+As we can see, the random forest obtains the best accuracy. It surpasses the decision tree in two points of accuracy. But instead of look at the accuracy, we can see how is also better the Forest’s kappa > Tree’s kappa. That is, the Random Forest is better than the Decision Tree taking into account their performance throughout all instances. This Kappa based comparison avoids the possibility of getting better accuracy due to a skewed partition of data. We have calculated the Expected Accuracy of both models looking at their respective confusion matrix, obtaining RandomForestEA =0.59 and DecisionTree = 0.58, so we can see how Random Forest gets 0.79 accuracy over a 0.59 expected accuracy, with which we can consider the Random Forest model the best overall. Since this use case is non-cost sensitive, we have refused to study the distribution of instances in the confusion matrix, focusing only in the accuracy of the models.
+
+In this case, we have seen how the Random Forest outperforms the Decision Tree, but we have to consider also other aspects that make Random Forest so useful (Breiman, www.stat.berkeley.edu):
+  * Better accuracy.
+  * Gives estimates of what variables are important.
+  * It has an effective method for estimating missing data and maintains accuracy when a large proportion of the data is missing
+  * Once the computation overhead is done, the model can be stored for future uses.
+  * It computes proximities between pairs of cases that can be used in clustering, locating outliers or unlabeled data.
