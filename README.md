@@ -106,3 +106,11 @@ In this case, we have seen how the Random Forest outperforms the Decision Tree, 
   * It has an effective method for estimating missing data and maintains accuracy when a large proportion of the data is missing
   * Once the computation overhead is done, the model can be stored for future uses.
   * It computes proximities between pairs of cases that can be used in clustering, locating outliers or unlabeled data.
+
+## Extra points: Cabins.
+
+After some research, we ended up knowing that the codification of Cabins number could be a source of information regarding the survivability of the passengers, because the first letter indicates the deck of the ship where it is located. Therefore, we have investigated the distribution of facilities of the RMS Titanic (encyclopedia-titanica.org).
+
+This is a first glance of the maps of RMS Titanic and the distribution of decks by levels A-G.
+
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/cabins.png?raw=true" width="600" height="600">
