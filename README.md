@@ -21,7 +21,7 @@ Besides, we are going to get rid of the rows that have missing values such as �
 
 Once the dataset is clean, we can learn our first tree. For this task, we use the default training method. This is the resulting tree:
 
-![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree2.png?raw=true "Tree1")
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree2.png?raw=true" width="600" height="400">
 
 This is the imporatance given to the splitting variables: Sex > Pclass > Age > Fare > Parch.
 
@@ -33,7 +33,7 @@ Regarding the classification tree, it does not change because the decision tree 
 
 Besides, if we look at the R-squared of the decision tree, we can see how important is the first split (Sex variable) in the explanation of the Survivals, and how the successive splittings add less explanation. We can also see how the overfitting is avoided pruning the tree in the 6th split and leaving only a R-squared of 0.66.
 
-![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/rsquare.png?raw=true =200x200 "R-square")
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/rsquare.png?raw=true" width="600" height="400">
 
 The performance values for this training are:
   * Accuracy: 0.7865
@@ -47,7 +47,7 @@ Now, we automate the parameter tuning and also run 10-fold Cross Validation in t
 
 Those are the different results obtained:
 
-![alt text](https://github.com/mrquant/TitanicClassifier/blob/master/assets/accuracy_cp_all.png?raw=true =200x200)
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/accuracy_cp_all.png?raw=true" width="600" height="400">
 
 Here we have trees that were pruned very soon. We can see the problem of a forward approach when splitting. In order to reduce overfitting and computation time, we are prunning the tree in every split checking the cp threshold without knowing if later splits are going to increase the accuracy, even though the current split doesn’t improve more than what we have stated in the cp parameter, this is known as the horizon effect (Wikipedia, Horizon Effect). Therefore, for the final parameters (pink line, Cost = 2), when cp= 0.04 or 0.07 the tree stops with an accuracy of ~0.79, but for cp=0.00, 0.01 or 0.02 the tree doesn’t stop and doesn’t prune some intermediate nodes, which don’t increase the accuracy, ending up in splittings that increase the accuracy to 0.81.
 
