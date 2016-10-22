@@ -53,7 +53,7 @@ Here we have trees that were pruned very soon. We can see the problem of a forwa
 
 The final combination used is the default rpart() parameters (maxdepth = 30, minsplit=20, etc) plus cp = 0.00 and Cost = 2, which are the values obtained after the train() using 10-fold CV. The final tree is:
 
-<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree_10.png?raw=true" width="200" height="200">
+<img src="https://github.com/mrquant/TitanicClassifier/blob/master/assets/tree_10.png?raw=true" width="400" height="600">
 
   * Accuracy: 0.81
   * Kappa: 0.59
